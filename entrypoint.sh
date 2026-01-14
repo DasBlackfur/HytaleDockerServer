@@ -12,14 +12,14 @@ clean_files () {
   rm Assets.zip
 }
 
-if [ ! -f /server/current-version]; then
+if [ ! -f /server/current-version ]; then
   echo "Running first time installation..."
   download_install
 else
   echo "Checking for updates..."
   upstream_version=$(/hytale-downloader-linux-amd64 -print-version)
   current_version=$(cat ./current-version)
-  if [$upstream_version != $current_version]; then
+  if [ "$upstream_version" != "$current_version" ]; then
     echo "Update from $current_version to $upstream_version found! Updating..."
     clean_files
     download_install
