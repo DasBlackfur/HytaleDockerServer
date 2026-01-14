@@ -1,0 +1,13 @@
+services:
+  hytale-server:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    environment:
+      MAX_MEM: 8G
+    ports:
+      - 5555:5555
+      - 5555:5555/udp
+    volumes:
+      - ./data-server:/server
