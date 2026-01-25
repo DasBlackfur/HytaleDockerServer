@@ -14,7 +14,7 @@ clean_files () {
 }
 
 make_uuid () {
-  cat /proc/sys/kernel/random/uuid | tr -d - > ./machine-id
+  tr -d - < /proc/sys/kernel/random/uuid > ./machine-id
 }
 
 if [ ! -f ./machine-id ]; then
@@ -32,4 +32,4 @@ else
 fi
 
 echo "Starting the server..."
-java -jar -Xmx"$MAX_MEM" ./Server/HytaleServer.jar --assets ./Assets.zip --bind 0.0.0.0:5555
+exec java -jar -Xmx"$MAX_MEM" ./Server/HytaleServer.jar --assets ./Assets.zip --bind 0.0.0.0:5555
