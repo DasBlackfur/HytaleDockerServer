@@ -2,10 +2,9 @@
 
 download_install () {
   /hytale-downloader-linux-amd64 -download-path /server/current-version.zip
-  unzip ./current-version.zip
+  unzip  -o ./current-version.zip
   rm ./current-version.zip
   /hytale-downloader-linux-amd64 -print-version > ./current-version
-  make_uuid
 }
 
 clean_files () {
@@ -20,6 +19,7 @@ make_uuid () {
 if [ ! -f ./machine-id ]; then
   echo "Running first time installation..."
   download_install
+  make_uuid
 else
   echo "Checking for updates..."
   upstream_version=$(/hytale-downloader-linux-amd64 -print-version)
